@@ -1,28 +1,10 @@
 var express = require('express');
+var php = require('php-proxy-middleware');
+
 var app = express();
- 
-// must specify options hash even if no options provided!
-var phpExpress = require('php-express')({
- 
-  // assumes php is in your PATH
-  binPath: 'php'
-});
- 
-// set view engine to php-express
-app.set('views', './src');
-app.engine('php', phpExpress.engine);
-app.set('view engine', 'php');
- 
-// routing all .php file to php-express
-app.all(/.+\.php$/, phpExpress.router);
-app.use(express.static('src'));
 
-/*
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('PHPExpress app listening at http://%s:%s', host, port);
-});
-*/
+app.use(php(__dirname + '/wordpress'));
+
+//app.listen(3000);
+
 module.exports = app;
-

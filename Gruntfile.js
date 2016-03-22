@@ -10,7 +10,7 @@ express: {
     all: {
         options: {
             server: './server.js',
-            bases: ['src'],
+            bases: ['wordpress'],
             port: 8080,
             hostname: "0.0.0.0",
             livereload: true
@@ -37,7 +37,7 @@ watch: {
 // https://www.npmjs.org/package/grunt-open
 open: {
     all: {
-        path: 'http://localhost:8080/index.html'
+        path: 'http://localhost:8080/index.php'
     }
 },
 
